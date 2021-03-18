@@ -62,7 +62,7 @@ func main() {
 		var nameMatches, descriptionMatches []string
 
 		nameRegex := regexp.MustCompile(`(?m)^\*\*.*\*\*`)
-		descriptionRegex := regexp.MustCompile(`(?m)^\*\*.*\*`) //Fix this regex
+		descriptionRegex := regexp.MustCompile(`(?m)^\*\*.*$`) //Fix this regex
 
 		nameMatches = nameRegex.FindAllString(rawMDList[i+1], -1)
 		descriptionMatches = descriptionRegex.FindAllString(rawMDList[i+1], -1)
