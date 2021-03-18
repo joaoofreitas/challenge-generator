@@ -56,13 +56,14 @@ func main() {
 	rawMDList := parseMD(rawMD)
 
 	subjectRegex := regexp.MustCompile(`([\r\n].*?)(:=?\r|\n)(..?(?:------).*)`)
+	nameParsingRegex := regexp.MustCompile("[^a-zA-Z0-9]+") // Used for removing all non alphabetic characters from the names of the exercises
 
 	for i, subjectMatches := range subjectRegex.FindAllString(rawMD, -1) {
 		var listOfExercises []Exercise
 		var nameMatches, descriptionMatches []string
 
 		nameRegex := regexp.MustCompile(`(?m)^\*\*.*\*\*`)
-		descriptionRegex := regexp.MustCompile(`(?m)^\*\*.*$`) //Fix this regex
+		descriptionRegex := regexp.MustCompile(`(?m)^\*\*.*$`)
 
 		nameMatches = nameRegex.FindAllString(rawMDList[i+1], -1)
 		descriptionMatches = descriptionRegex.FindAllString(rawMDList[i+1], -1)
@@ -73,7 +74,10 @@ func main() {
 
 		for j := 0; j < len(nameMatches); j++ {
 			var exercise Exercise
-			exercise.name = nameMatches[j]
+
+			processedString := nameParsingRegex.ReplaceAllString(nameMatches[j], "") // Used for removing all non alphabetic characters from the names of the exercises
+
+			exercise.name = processedString
 			exercise.description = descriptionMatches[j]
 			listOfExercises = append(listOfExercises, exercise)
 		}
