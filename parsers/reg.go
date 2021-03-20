@@ -7,7 +7,7 @@ var GetSubjectNames = regexp.MustCompile(`([\r\n].*?)(:=?\r|\n)(..?(?:------).*)
 
 var cleanExercisesNames = regexp.MustCompile("[^a-zA-Z0-9]+")
 
-func GetExercisesNames(rawName string) string {
+func GetExercisesName(rawName string) string { // Returns a cleaned given exercise name
 	return cleanExercisesNames.ReplaceAllString(rawName, "")
 }
 

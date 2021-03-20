@@ -42,7 +42,7 @@ func ParsedData(md string) []structs.Subject {
 		for j := 0; j < len(nameMatches); j++ {
 			var exercise structs.Exercise
 
-			exercise.Name = GetExercisesNames(nameMatches[j])
+			exercise.Name = GetExercisesName(nameMatches[j])
 			exercise.Description = descriptionMatches[j]
 
 			listOfExercises = append(listOfExercises, exercise)
