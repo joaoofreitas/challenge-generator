@@ -8,16 +8,6 @@ import (
 	"strings"
 )
 
-type Exercise struct {
-	name        string
-	description string
-}
-
-type Subject struct {
-	name      string
-	exercises []Exercise
-}
-
 func parseMD(text string) []string { // Can be optimized in terms of not even store the first introductory part of the README
 	var sections []string
 	var tmp string
