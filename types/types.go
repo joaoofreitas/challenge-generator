@@ -1,4 +1,4 @@
-package structs
+package types
 
 type Exercise struct {
 	Name        string

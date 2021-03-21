@@ -1,7 +1,7 @@
 package parsers
 
 import (
-	"../structs"
+	"../types"
 	"strings"
 )
 
@@ -23,13 +23,13 @@ func parseMD(text string) []string { // Can be optimized in terms of not even st
 	return sections
 }
 
-func ParsedData(md string) []structs.Subject {
-	var listOfSubjects []structs.Subject
+func ParsedData(md string) []types.Subject {
+	var listOfSubjects []types.Subject
 
 	parsedMD := parseMD(md)
 
 	for i, subjectMatches := range GetSubjectNames.FindAllString(md, -1) {
-		var listOfExercises []structs.Exercise
+		var listOfExercises []types.Exercise
 		var nameMatches, descriptionMatches []string
 
 		nameMatches = GetExercisesRawNames.FindAllString(parsedMD[i+1], -1)
@@ -40,14 +40,14 @@ func ParsedData(md string) []structs.Subject {
 		}
 
 		for j := 0; j < len(nameMatches); j++ {
-			var exercise structs.Exercise
+			var exercise types.Exercise
 
-			exercise.Name = GetExercisesName(nameMatches[j])
+			exercise.Name = CleanName(nameMatches[j])
 			exercise.Description = descriptionMatches[j]
 
 			listOfExercises = append(listOfExercises, exercise)
 		}
-		subject := structs.Subject{Name: subjectMatches, Exercises: listOfExercises}
+		subject := types.Subject{Name: CleanName(subjectMatches), Exercises: listOfExercises}
 		listOfSubjects = append(listOfSubjects, subject)
 	}
 	return listOfSubjects
