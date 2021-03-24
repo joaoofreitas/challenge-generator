@@ -6,8 +6,7 @@ import (
 	"path/filepath"
 )
 
-func GenerateProject(model []types.Subject) {
-	baseDir := "ProjectFolder"
+func GenerateProject(baseDir string, model []types.Subject) {
 	generator.GenerateDir(baseDir)
 
 	for _, subject := range model {
