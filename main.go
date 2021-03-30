@@ -54,7 +54,7 @@ func main() {
 		"\n\n")
 	fmt.Println("For using free software. \n" +
 		"This software is licensed by MIT License. \n" +
-		"https://github.com/joaoofreitas" +
-		"https://joaoofreitas.tech" +
+		"https://github.com/joaoofreitas\n" +
+		"https://joaoofreitas.tech\n" +
 		"Copyright (c) 2021 João Freitas")
 }
